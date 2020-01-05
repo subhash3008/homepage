@@ -5,6 +5,11 @@
     justify-content: space-between;
     padding: 12px 5vw;
 
+    @media (max-width: 600px) {
+        justify-content: center;
+        flex-flow: row wrap;
+    }
+
     &__Title {
         font-size: 32px;
         font-weight: 400;
