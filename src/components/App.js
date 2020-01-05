@@ -18,16 +18,32 @@ const getHourOfDay = (date) => {
     }
 }
 
-const App = () => {
-    const hourOfDay = getHourOfDay(new Date());
-    const appStyle = {
-        background: `url('/images/${hourOfDay}.jpeg') center/cover no-repeat fixed`
+class App extends React.Component {
+    hourOfDay = getHourOfDay(new Date());
+
+    constructor(props) {
+        super(props);
+        this.state = { weatherData: null };
     }
-    return (
-        <div style={appStyle}>
-            <AppRoutes hourOfDay={hourOfDay} />
-        </div>
-    );
+
+    getAppStyle = () => {
+        return { background: `url('/images/${this.hourOfDay}.jpeg') center/cover no-repeat fixed` }
+    }
+
+    setWeather = (weatherData) => {
+        if (weatherData) {
+            this.setState(prevState => ({ ...prevState, weatherData }));
+        }
+    }
+
+    render() {
+        return (
+            <div style={this.getAppStyle()}>
+                <AppRoutes hourOfDay={this.hourOfDay} setWeather={this.setWeather} weatherData={this.state.weatherData}/>
+            </div>
+        );
+    }
+
 }
 
 export default App;

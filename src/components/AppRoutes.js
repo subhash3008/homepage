@@ -9,9 +9,9 @@ const AppRoutes = (props) => {
     return (
         <React.Fragment>
             <Router history={history}>
-                <Header hourOfDay={props.hourOfDay}/>
+                <Header hourOfDay={props.hourOfDay} setWeather={props.setWeather}/>
                 <Switch>
-                    <Route path="/" exact component={() => <Homepage hourOfDay={props.hourOfDay}/>} />
+                    <Route path="/" exact component={() => <Homepage hourOfDay={props.hourOfDay} weatherData={props.weatherData}/>} />
                 </Switch>
             </Router>
         </React.Fragment>

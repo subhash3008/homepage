@@ -4,4 +4,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow: column nowrap;
+
+    &__Date {
+        font-size: 26px;
+        margin-top: 10px;
+    }
+
+    &__Temp {
+        font-size: 22px;
+        font-weight: 400;
+        margin: 15px 0;
+        text-transform: capitalize;
+    }
 }

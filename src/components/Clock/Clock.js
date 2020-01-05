@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './Clock.module.scss';
+import { getTimedColor } from '../../utils';
 
 class Clock extends React.Component {
     marksRef = React.createRef();
@@ -8,15 +9,12 @@ class Clock extends React.Component {
     stroke = '#cfcfcf';
 
     componentDidMount() {
-        console.log('marks ::', this.props, this.marksRef);
         if (this.props.hourOfDay === 'morning' || this.props.hourOfDay === 'evening') {
             this.stroke = '#333';
-        } 
-        console.log('Clock color:', this.stroke);
+        }
         if (this.marksRef) {
             const children = this.marksRef && this.marksRef.childNodes;
             const len = children && children.length;
-            console.log(len);
             let elNum = 1;
             for (let i = 0; i < len; i ++) {
                 if (children[i] && children[i].nodeName && children[i].nodeName === 'line') {
@@ -41,27 +39,27 @@ class Clock extends React.Component {
 
     }
 
-    getStrokeColor = () => {
-        if (this.props.hourOfDay === 'morning' || this.props.hourOfDay === 'noon') {
-            return '#333';
-        }
-        return '#cfcfcf';
-    }
+    // getStrokeColor = () => {
+    //     if (this.props.hourOfDay === 'morning' || this.props.hourOfDay === 'noon') {
+    //         return '#333';
+    //     }
+    //     return '#cfcfcf';
+    // }
 
     render() {
-        console.log('props : ', this.props.hourOfDay);
+        const strokeColor = getTimedColor(this.props.hourOfDay);
         return (
             <div className={styles.Clock}>
                 <svg
                     viewBox="0 0 40 40"
                     className={styles.Clock__Svg}
                     ref={(ref) => { this.svgRef = ref; }}
-                    style={{stroke: this.getStrokeColor()}}
+                    style={{stroke: strokeColor}}
                 >
                     <line x1="0" y1="0" x2="11" y2="0" className={styles.Clock__Svg__Hour}/> 
                     <line x1="0" y1="0" x2="13" y2="0" className={styles.Clock__Svg__Min}/>
                     <line x1="0" y1="0" x2="15" y2="0"  className={styles.Clock__Svg__Sec}/>
-                    <circle cx="20" cy="20" r=".6" className={styles.Clock__Svg__Pin} style={{ fill: this.getStrokeColor() }}/>
+                    <circle cx="20" cy="20" r=".6" className={styles.Clock__Svg__Pin} style={{ fill: strokeColor }}/>
                     <circle cx="20" cy="20" r="19" />
                     <g className={styles.Clock__Svg__Marks} ref={(ref) => { this.marksRef = ref; }}>
                         <line x1="16" y1="0" x2="17" y2="0" />
