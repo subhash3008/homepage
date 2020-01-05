@@ -1,0 +1,90 @@
+.Clock {
+    width: 45%;
+
+    @media (max-width: 920px) {
+        width: 60%;
+    }
+
+    @media (max-width: 768px) {
+        width: 75%;
+    }
+
+    @media (max-width: 600px) {
+        width: 85%;
+    }
+
+    &__Svg {
+        width: 100%;
+        fill: transparent;
+        stroke-width: .25;
+        stroke-linecap: round;
+        transform: rotate(-90deg);
+        --start-seconds: 59;
+        --start-minutes: 59;
+        --start-hours: 11;
+
+        &__Marks {
+            transform: translate(20px, 20px);
+        }
+
+        &__Hour,
+        &__Min,
+        &__Sec {
+            transform: translate(20px, 20px) rotate(0deg);
+        }
+
+        &__Sec {
+            stroke-width: .15;
+            stroke: #d33d33;
+            transform: translate(20px, 20px) rotate(calc(var(--start-seconds) * 6deg));
+            animation: rotateSeconds 60s steps(60) infinite;
+        }
+
+        &__Min {
+            stroke-width: 0.35;
+            transform: translate(20px, 20px) rotate(calc(var(--start-minutes) * 6deg));
+            animation: rotateMinutes 3600s steps(60) infinite;
+            animation-delay: calc(var(--start-seconds) * -1 * 1s);
+        }
+    
+        &__Hour {
+            stroke-width: .6;
+            transform: translate(20px, 20px) rotate(calc(var(--start-hours) * 30deg));
+            animation: rotateHour calc(12 * 60 * 60s) linear infinite;
+            animation-delay: calc(calc(var(--start-minutes) * -60 * 1s) + calc(var(--start-seconds) * -1 * 1s));
+        }
+        
+        &__Pin {
+            stroke: #d33d33;
+            stroke-width: 0.2;
+        }
+    }
+
+}
+
+@keyframes rotateSeconds {
+    from {
+        transform: translate(20px, 20px) rotate(calc(var(--start-seconds) * 6deg));
+    }
+    to {
+        transform: translate(20px, 20px) rotate(calc(var(--start-seconds) * 6deg + 360deg));
+    }
+}
+
+@keyframes rotateMinutes {
+    from {
+        transform: translate(20px, 20px) rotate(calc(var(--start-minutes) * 6deg));
+    }
+    to {
+        transform: translate(20px, 20px) rotate(calc(var(--start-minutes) * 6deg + 360deg));
+    }
+}
+
+@keyframes rotateHour {
+    from {
+        transform: translate(20px, 20px) rotate(calc(var(--start-hours) * 30deg));
+    }
+    to {
+        transform: translate(20px, 20px) rotate(calc(var(--start-hours) * 30deg + 360deg));
+    }
+}

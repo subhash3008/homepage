@@ -1,0 +1,12 @@
+.Header {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 5vw;
+
+    &__Title {
+        font-size: 32px;
+        font-weight: 400;
+    }
+}
