@@ -15,7 +15,7 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { weatherData: null };
+        this.state = { weatherData: null, isMenuOpen: false };
     }
 
     componentDidMount() {
@@ -43,6 +43,16 @@ class Header extends React.Component {
         }
     }
 
+    onMenuBtnClick = () => {
+        this.setState({isMenuOpen: !this.state.isMenuOpen}, () => {
+            console.log('menu state : ', this.state.isMenuOpen ? 'open' : 'closed');
+        });
+    }
+
+    onOverlayClose = () => {
+        this.setState({isMenuOpen: false});
+    }
+
     getHeaderStyle = () => {
         if (this.props.hourOfDay === 'morning' || this.props.hourOfDay === 'noon') {
             this.boxShadow = '0 3px 6px rgba(0, 0, 0, .2)';
@@ -50,16 +60,58 @@ class Header extends React.Component {
         return { ...this.headerStyle, boxShadow: this.boxShadow };
     }
 
+    renderMenu = () => {
+        return (
+            <React.Fragment>
+                <div className={styles.Overlay}>
+                    <div className={styles.Overlay__Close} onClick={this.onOverlayClose}>
+                        <img src="/images/cancel.svg" alt="close menu"></img>
+                    </div>
+                </div>
+                <div className={styles.Menu}>
+                    <div className={styles.Menu__Heading}>
+                        Menu
+                    </div>
+                    <div className={styles.Menu__Content}>
+                        <ul className={styles.Menu__Content__List}>
+                            <li className={styles.Menu__Content__List__Item}>
+                                <span>Home</span>
+                            </li>
+                            <li className={styles.Menu__Content__List__Item}>
+                                <span>Jokes</span>
+                            </li>
+                            <li className={styles.Menu__Content__List__Item}>
+                                <span>Jokes</span>
+                            </li>
+                            <li className={styles.Menu__Content__List__Item}>
+                                <span>Jokes</span>
+                            </li>
+                            <li className={styles.Menu__Content__List__Item}>
+                                <span>Jokes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </React.Fragment>
+        )
+    }
+
     render() {
         return (
-            <div className={styles.Header} style={this.getHeaderStyle()}>
-                <div className={styles.Header__Title}>
-                    Subhash Chandra
+            <React.Fragment>
+                <div className={styles.Header} style={this.getHeaderStyle()}>
+                    <div className={styles.Header__Title}>
+                        Subhash Chandra
+                    </div>
+                    <div className={styles.Header__Temp}>
+                        {this.state.weatherData}
+                    </div>
+                    <div className={styles.Header__Menu__Btn} onClick={this.onMenuBtnClick}>
+                        <span><img src="/images/icons8-menu.svg" alt="toggle menu"></img></span>
+                    </div>
                 </div>
-                <div className={styles.Header__Temp}>
-                    {this.state.weatherData}
-                </div>
-            </div>
+                {this.state.isMenuOpen ? this.renderMenu() : null}
+            </React.Fragment>
         );
     }
 }
