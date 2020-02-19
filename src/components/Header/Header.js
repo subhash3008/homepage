@@ -60,6 +60,20 @@ class Header extends React.Component {
         return { ...this.headerStyle, boxShadow: this.boxShadow };
     }
 
+    getMenuIconSrc() {
+        switch (this.props.hourOfDay) {
+            case 'morning': 
+            case 'noon':
+            case 'evening':
+                return '/images/list.png';
+            case 'night':
+            case 'dark_night':
+                return '/images/list-white.png';
+            default:
+                return '/images/list.png';
+        }
+    }
+
     renderMenu = () => {
         return (
             <React.Fragment>
@@ -107,7 +121,7 @@ class Header extends React.Component {
                         {this.state.weatherData}
                     </div>
                     <div className={styles.Header__Menu__Btn} onClick={this.onMenuBtnClick}>
-                        <span><img src="/images/icons8-menu.svg" alt="toggle menu"></img></span>
+                        <span><img src={this.getMenuIconSrc()} alt="toggle menu"></img></span>
                     </div>
                 </div>
                 {this.state.isMenuOpen ? this.renderMenu() : null}
