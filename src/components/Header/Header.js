@@ -75,7 +75,7 @@ class Header extends React.Component {
                     <div className={styles.Menu__Content}>
                         <ul className={styles.Menu__Content__List}>
                             <li className={styles.Menu__Content__List__Item}>
-                                <span>Home</span>
+                                <span>Home A</span>
                             </li>
                             <li className={styles.Menu__Content__List__Item}>
                                 <span>Jokes</span>
