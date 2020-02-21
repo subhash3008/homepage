@@ -5,6 +5,8 @@ import { getTimedColor } from '../../utils';
 import { _api } from '../../api';
 import urls from '../../api/urls';
 import tokens from '../../api/tokens.json';
+import { Link } from 'react-router-dom';
+import history from '../../history';
 
 class Header extends React.Component {
     fontColor = getTimedColor(this.props.hourOfDay);
@@ -19,7 +21,9 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        this.getWeatherData();
+        if (this.props.isHomepage) {
+            this.getWeatherData();
+        }
     }
 
     getWeatherData = async () => {
@@ -45,7 +49,7 @@ class Header extends React.Component {
 
     onMenuBtnClick = () => {
         this.setState({isMenuOpen: !this.state.isMenuOpen}, () => {
-            console.log('menu state : ', this.state.isMenuOpen ? 'open' : 'closed');
+            // console.log('menu state : ', this.state.isMenuOpen ? 'open' : 'closed');
         });
     }
 
@@ -88,11 +92,11 @@ class Header extends React.Component {
                     </div>
                     <div className={styles.Menu__Content}>
                         <ul className={styles.Menu__Content__List}>
-                            <li className={styles.Menu__Content__List__Item}>
-                                <span>Home A</span>
+                            <li className={styles.Menu__Content__List__Item} onClick={this.onOverlayClose}>
+                                <Link to="/">Home</Link>
                             </li>
-                            <li className={styles.Menu__Content__List__Item}>
-                                <span>Jokes</span>
+                            <li className={styles.Menu__Content__List__Item} onClick={this.onOverlayClose}>
+                                <Link to="/recipe">Recipe</Link>
                             </li>
                             <li className={styles.Menu__Content__List__Item}>
                                 <span>Jokes</span>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AppRoutes from './AppRoutes';
+import history from '../history';
 
 const getHourOfDay = (date) => {
     const hour = new Date(date).getHours();
@@ -23,11 +24,33 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { weatherData: null };
+        this.state = { weatherData: null, isHomepage: false };
+    }
+
+    componentDidMount() {
+        // console.log('app history : ', history);
+        if (history.location.pathname === '/') {
+            this.setState({isHomepage: true});
+        }
+        history.listen(
+            (location, action) => {
+                console.log('HISTORY CHANGED : ', location);
+                if (location.pathname === '/') {
+                    this.setState({isHomepage: true});
+                } else {
+                    this.setState({isHomepage: false});
+                }
+            }
+        );
     }
 
     getAppStyle = () => {
-        return { background: `url('/images/${this.hourOfDay}.jpeg') center/cover no-repeat fixed` }
+        // console.log('Checking background', this.state);
+        if (this.state.isHomepage) {
+            return { background: `url('/images/${this.hourOfDay}.jpeg') center/cover no-repeat fixed` }
+        } else {
+            return {background: `linear-gradient(to top left, mediumseagreen, mediumseagreen)`}
+        }
     }
 
     setWeather = (weatherData) => {
@@ -37,9 +60,10 @@ class App extends React.Component {
     }
 
     render() {
+        // console.log('props app : ', this.props, this.state);
         return (
             <div style={this.getAppStyle()}>
-                <AppRoutes hourOfDay={this.hourOfDay} setWeather={this.setWeather} weatherData={this.state.weatherData}/>
+                <AppRoutes hourOfDay={this.hourOfDay} setWeather={this.setWeather} weatherData={this.state.weatherData} isHomepage={this.state.isHomepage}/>
             </div>
         );
     }

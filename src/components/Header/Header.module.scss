@@ -105,6 +105,7 @@
                 position: relative;
                 display: block;
                 transition: all .3s ease-in-out;
+                color: #fff;
                 &::before {
                     content: '';
                     position: absolute;
@@ -135,10 +136,10 @@
                     height: 100%;
                 }
 
-                &:hover span::before {
+                &:hover a::before {
                     width: 100%;
                 }
-                &:hover span::after {
+                &:hover a::after {
                     height: 100%;
                 }
                 &:hover {
@@ -146,11 +147,13 @@
                     box-shadow: 0 2px 4px rgba(0,0,0,.2);
                 }
 
-                span {
+                a, span {
                     padding: 10px 20px;
                     position: relative;
                     display: inline-block;
                     transition: all .3s ease-in-out;
+                    text-decoration: none;
+                    color: #fff;
                     &::before {
                         content: '';
                         position: absolute;
