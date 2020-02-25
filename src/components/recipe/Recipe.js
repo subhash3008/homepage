@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import styles from "./Recipe.module.scss";
 import { getRandomRecipeList } from '../../actions';
+import history from '../../history';
 
 class Recipe extends React.Component {
     queryParams = {
@@ -14,6 +15,16 @@ class Recipe extends React.Component {
         // console.log(this.props.recipe && this.props.recipe.recipeList && this.props.recipe.recipeList.length);
         if (!(this.props.recipe && this.props.recipe.recipeList && this.props.recipe.recipeList.length)) {
             this.props.getRandomRecipeList({...this.queryParams});
+        }
+    }
+
+    goToDetailPage = (recipe) => {
+        if (recipe && recipe.id) {
+            console.log('Going to :', '/recipe/details', `?id=${recipe.id}`);
+            history.push({
+                pathname: '/recipe/details',
+                search: `?id=${recipe.id}`
+            });
         }
     }
 
@@ -65,7 +76,7 @@ class Recipe extends React.Component {
                             </div>
                         </div>
                         <div className={styles.Recipe__Item__Footer}>
-                            <button className={styles.Recipe__Item__Footer__Btn}>
+                            <button className={styles.Recipe__Item__Footer__Btn} onClick={() => this.goToDetailPage(el)}>
                                 View Recipe
                             </button>
                         </div>
@@ -74,11 +85,20 @@ class Recipe extends React.Component {
             });
         }
     }
+
+    renderRefreshBtn() {
+        return (
+            <div className={styles.Recipe__Footer}>
+                <button className={styles.Recipe__Footer__Btn}>Get More Recipes</button>
+            </div>
+        );
+    }
     render() {
         // console.log("REcipe component render :", this.state, this.props);
         return (
             <div className={styles.Recipe}>
                 {this.renderRecipeList()}
+                {this.renderRefreshBtn()}
             </div>
         );
     }

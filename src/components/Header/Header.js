@@ -6,7 +6,7 @@ import { _api } from '../../api';
 import urls from '../../api/urls';
 import tokens from '../../api/tokens.json';
 import { Link } from 'react-router-dom';
-import history from '../../history';
+// import history from '../../history';
 
 class Header extends React.Component {
     fontColor = getTimedColor(this.props.hourOfDay);

@@ -5,6 +5,7 @@ import history from '../history';
 import Header from './Header/Header';
 import Homepage from './Homepage/Homepage';
 import Recipe from './recipe/Recipe';
+import RecipeDetails from './recipe/details/RecipeDetails';
 
 const AppRoutes = (props) => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes = (props) => {
                 <Switch>
                     <Route path="/" exact component={() => <Homepage hourOfDay={props.hourOfDay} weatherData={props.weatherData} isHomePage={props.isHomePage}/>} />
                     <Route path="/recipe" exact component={Recipe} />
+                    <Route path="/recipe/details" exact component={RecipeDetails} />
                 </Switch>
             </Router>
         </React.Fragment>
