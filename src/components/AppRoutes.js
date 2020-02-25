@@ -15,7 +15,7 @@ const AppRoutes = (props) => {
                 <Switch>
                     <Route path="/" exact component={() => <Homepage hourOfDay={props.hourOfDay} weatherData={props.weatherData} isHomePage={props.isHomePage}/>} />
                     <Route path="/recipe" exact component={Recipe} />
-                    <Route path="/recipe/details" exact component={RecipeDetails} />
+                    <Route path="/recipe/details/:id" exact component={RecipeDetails} />
                 </Switch>
             </Router>
         </React.Fragment>

@@ -20,11 +20,8 @@ class Recipe extends React.Component {
 
     goToDetailPage = (recipe) => {
         if (recipe && recipe.id) {
-            console.log('Going to :', '/recipe/details', `?id=${recipe.id}`);
-            history.push({
-                pathname: '/recipe/details',
-                search: `?id=${recipe.id}`
-            });
+            console.log('Going to :', `/recipe/details${recipe.id}`);
+            history.push(`/recipe/details/${recipe.id}`);
         }
     }
 
