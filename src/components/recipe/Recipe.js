@@ -8,7 +8,7 @@ import history from '../../history';
 class Recipe extends React.Component {
     queryParams = {
         tags: 'vegetarian',
-        number: 10
+        number: 100
     }
     componentDidMount() {
         // console.log("REcipe component :", this.state, this.props);
