@@ -26,3 +26,19 @@ export const getRandomRecipeList = (params) => async (dispatch) => {
     console.log('RESPONSE FOR RANDOM RECIPE : ', response.data);
     dispatch({type: actionType.GET_RANDOM_RECIPE, payload: response.data && response.data.recipes});
 }
+
+export const getRecipeInfoById = (id) => async (dispatch) => {
+    const params = {
+        apiKey: TOKENS.spoonacular,
+        id: id
+    };
+    const url = URLS.infoRecipeSpoonacular + createParamsString(params);
+    let response = null;
+    try {
+        response = await _api.get(url);
+    } catch (e) {
+        console.error(e);
+    }
+    console.log('RESPONSE FOR ID RECIPE : ', id, response.data);
+    dispatch({type: actionType.GET_RECIPE_BY_ID, payload: response.data && response.data});
+}

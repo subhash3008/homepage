@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import styles from './RecipeDetails.module.scss';
-import { getRandomRecipeList } from '../../../actions';
+import { getRandomRecipeList, getRecipeInfoById } from '../../../actions';
 
 class RecipeDetails extends React.Component {
     constructor(props) {
@@ -15,25 +15,27 @@ class RecipeDetails extends React.Component {
     }
 
     componentDidUpdate() {
-        // this.performIdCheck();
+        this.performIdCheck('update');
     }
 
-    performIdCheck = () => {
+    performIdCheck = (flag = '') => {
         const recipeId = this.props.match.params.id;
         console.log('recipeId : ', recipeId);
-        if (this.props.recipeList && this.props.recipeList.length && recipeId && !this.state.recipe) {
+        if (this.props.recipeList && this.props.recipeList.length && !flag) {
             const recipe = this.props.recipeList.filter(el => el.id === +recipeId)[0];
             console.log('RECIPE :', recipeId, recipe);
             if (recipe) {
                 this.setState({recipe, isRecipePresent: true});
             } else {
                 this.setState({recipe: null, isRecipePresent: false});
+                this.props.getRecipeInfoById(recipeId);
             }
-        } else {
-            this.props.getRandomRecipeList({
-                tags: 'vegetarian',
-                number: 100
-            });
+        } else if (flag === 'update' && !this.state.recipe) {
+            const recipe = this.props.recipeList.filter(el => el.id === +recipeId)[0];
+            console.log('RECIPE :', recipeId, recipe);
+            if (recipe) {
+                this.setState({recipe, isRecipePresent: true});
+            }
         }
     }
 
@@ -56,7 +58,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapStateToDispatch = {
-    getRandomRecipeList
+    getRandomRecipeList,
+    getRecipeInfoById
 }
 
 export default connect(

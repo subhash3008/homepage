@@ -1,1 +1,2 @@
 export const GET_RANDOM_RECIPE = 'GET_RANDOM_RECIPE';
+export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';

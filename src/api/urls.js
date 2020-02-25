@@ -5,5 +5,6 @@ export default {
     ingredientsRecipeSpoonacular: 'https://api.spoonacular.com/recipes/:id/ingredientWidget.json',
     priceBdownRecipeSpoonacular: 'https://api.spoonacular.com/recipes/:id/priceBreakdownWidget.json',
     summaryRecipeSpoonacular: 'https://api.spoonacular.com/recipes/:id/summary',
-    randomRecipeSpoonacular: 'https://api.spoonacular.com/recipes/random'
+    randomRecipeSpoonacular: 'https://api.spoonacular.com/recipes/random',
+    infoRecipeSpoonacular: 'https://api.spoonacular.com/recipes/:id/information' 
 }

@@ -29,7 +29,7 @@ class Recipe extends React.Component {
         if (this.props.recipe && this.props.recipe.recipeList && this.props.recipe.recipeList.length) {
             return this.props.recipe.recipeList.map(el => {
                 return (
-                    <div className={styles.Recipe__Item} key={el.id}>
+                    <div className={styles.Recipe__Item} key={el.id + el.title}>
                         <div className={styles.Recipe__Item__Img}>
                             <img src={el.image} alt={el.title}></img>
                         </div>
