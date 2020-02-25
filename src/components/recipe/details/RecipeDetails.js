@@ -15,14 +15,15 @@ class RecipeDetails extends React.Component {
     }
 
     componentDidUpdate() {
-        this.performIdCheck();
+        // this.performIdCheck();
     }
 
     performIdCheck = () => {
         const recipeId = this.props.match.params.id;
         console.log('recipeId : ', recipeId);
-        if (this.props.recipeList && this.props.recipeList.length) {
+        if (this.props.recipeList && this.props.recipeList.length && recipeId && !this.state.recipe) {
             const recipe = this.props.recipeList.filter(el => el.id === +recipeId)[0];
+            console.log('RECIPE :', recipeId, recipe);
             if (recipe) {
                 this.setState({recipe, isRecipePresent: true});
             } else {
