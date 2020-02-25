@@ -10,7 +10,7 @@ class RecipeDetails extends React.Component {
     }
 
     componentDidMount() {
-        const recipeId = this.props.math.params.id;
+        const recipeId = this.props.match.params.id;
         console.log('recipeId : ', recipeId);
         if (this.props.recipeList && this.props.recipeList.length) {
             const recipe = this.props.recipeList.filter(el => el.id === recipeId)[0];
@@ -28,7 +28,7 @@ class RecipeDetails extends React.Component {
         return (
             <div className={styles.RecipeDetails}>
                 Recipe Details
-                {this.state.recipe.id || null}
+                {this.state.recipe && this.state.recipe.id || null}
             </div>
         );
     }
