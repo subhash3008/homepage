@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import styles from './RecipeDetails.module.scss';
+import { getRandomRecipeList } from '../../../actions';
 
 class RecipeDetails extends React.Component {
     constructor(props) {
@@ -10,15 +11,28 @@ class RecipeDetails extends React.Component {
     }
 
     componentDidMount() {
+        this.performIdCheck();
+    }
+
+    componentDidUpdate() {
+        this.performIdCheck();
+    }
+
+    performIdCheck = () => {
         const recipeId = this.props.match.params.id;
         console.log('recipeId : ', recipeId);
         if (this.props.recipeList && this.props.recipeList.length) {
-            const recipe = this.props.recipeList.filter(el => el.id === recipeId)[0];
+            const recipe = this.props.recipeList.filter(el => el.id === +recipeId)[0];
             if (recipe) {
                 this.setState({recipe, isRecipePresent: true});
             } else {
                 this.setState({recipe: null, isRecipePresent: false});
             }
+        } else {
+            this.props.getRandomRecipeList({
+                tags: 'vegetarian',
+                number: 100
+            });
         }
     }
 
@@ -40,4 +54,11 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps, null)(RecipeDetails);
+const mapStateToDispatch = {
+    getRandomRecipeList
+}
+
+export default connect(
+    mapStateToProps, 
+    mapStateToDispatch
+)(RecipeDetails);
