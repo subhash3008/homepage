@@ -32,7 +32,7 @@ export const getRecipeInfoById = (id) => async (dispatch) => {
         apiKey: TOKENS.spoonacular,
         id: id
     };
-    const url = URLS.infoRecipeSpoonacular + createParamsString(params);
+    const url = (URLS.infoRecipeSpoonacular).replace('/:id/', `/${id}/`) + createParamsString(params);
     let response = null;
     try {
         response = await _api.get(url);
