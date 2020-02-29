@@ -20,11 +20,9 @@ class RecipeDetails extends React.Component {
 
     performIdCheck = (flag = '') => {
         const recipeId = this.props.match.params.id;
-        console.log('recipeId : ', recipeId);
         if (!flag) {
             if (this.props.recipeList && this.props.recipeList.length) {
                 const recipe = this.props.recipeList.filter(el => el.id === +recipeId)[0];
-                console.log('RECIPE :', recipeId, recipe);
                 if (recipe) {
                     this.setState({recipe, isRecipePresent: true});
                 } else {
@@ -36,7 +34,6 @@ class RecipeDetails extends React.Component {
             }
         } else if (flag === 'update' && !this.state.recipe) {
             const recipe = this.props.recipeList.filter(el => el.id === +recipeId)[0];
-            console.log('RECIPE :', recipeId, recipe);
             if (recipe) {
                 this.setState({recipe, isRecipePresent: true});
             }
@@ -79,8 +76,6 @@ class RecipeDetails extends React.Component {
     }
 
     render() {
-        console.log('details render props : ', this.props);
-        console.info('details render state : ', this.state);
         if (this.state.recipe) {
             return (
                 <div className={styles.RecipeDetails}>
