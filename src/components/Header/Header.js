@@ -78,6 +78,20 @@ class Header extends React.Component {
         }
     }
 
+    getMenuIconColor() {
+        switch (this.props.hourOfDay) {
+            case 'morning': 
+            case 'noon':
+            case 'evening':
+                return '#555';
+            case 'night':
+            case 'dark_night':
+                return '#efefef';
+            default:
+                return '#555';
+        }
+    }
+
     renderMenu = () => {
         return (
             <React.Fragment>
@@ -98,8 +112,8 @@ class Header extends React.Component {
                             <li className={styles.Menu__Content__List__Item} onClick={this.onOverlayClose}>
                                 <Link to="/recipe">Recipe</Link>
                             </li>
-                            <li className={styles.Menu__Content__List__Item}>
-                                <span>Jokes</span>
+                            <li className={styles.Menu__Content__List__Item} onClick={this.onOverlayClose}>
+                                <Link to="/countries">Countries</Link>
                             </li>
                             <li className={styles.Menu__Content__List__Item}>
                                 <span>Jokes</span>
@@ -124,8 +138,13 @@ class Header extends React.Component {
                     <div className={styles.Header__Temp}>
                         {this.state.weatherData}
                     </div>
-                    <div className={styles.Header__Menu__Btn} onClick={this.onMenuBtnClick}>
-                        <span><img src={this.getMenuIconSrc()} alt="toggle menu"></img></span>
+                    <div className={`${styles.Header__Menu__Btn} ${styles.BorderIcon}`} style={{borderColor: this.getMenuIconColor()}} onClick={this.onMenuBtnClick}>
+                        {/* <span>
+                            <img src={this.getMenuIconSrc()} alt="toggle menu"></img>
+                        </span> */}
+                        <div className={styles.BorderIcon__Bar} style={{background: this.getMenuIconColor()}}></div>
+                        <div className={styles.BorderIcon__Bar} style={{background: this.getMenuIconColor()}}></div>
+                        <div className={styles.BorderIcon__Bar} style={{background: this.getMenuIconColor()}}></div>
                     </div>
                 </div>
                 {this.state.isMenuOpen ? this.renderMenu() : null}

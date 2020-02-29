@@ -1,0 +1,29 @@
+.Countries {
+    padding: 20px;
+
+    @media (min-width: 768px) {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    table {
+        border: 1px solid #efefef;
+        color: #efefef;
+        border-collapse: collapse;
+        text-align: center;
+        thead {
+            background: #efefef;
+            color: mediumseagreen;
+            th {
+                border: 1px solid rgba(mediumseagreen, .5);
+                padding: 10px 15px;
+            }
+        }
+        tbody {
+            td {
+                border: 1px solid #efefef;
+                padding: 10px 15px;
+            }
+        }
+    }
+}

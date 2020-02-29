@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import styles from "./Recipe.module.scss";
 import { getRandomRecipeList } from '../../actions';
 import history from '../../history';
+import Loader from '../loader/Loader';
 
 class Recipe extends React.Component {
     queryParams = {
         tags: 'vegetarian',
-        number: 100
+        number: 20
     }
     componentDidMount() {
         // console.log("REcipe component :", this.state, this.props);
@@ -91,18 +92,29 @@ class Recipe extends React.Component {
         );
     }
     render() {
-        // console.log("REcipe component render :", this.state, this.props);
         return (
-            <div className={styles.Recipe}>
-                {this.renderRecipeList()}
-                {this.renderRefreshBtn()}
-            </div>
+            <React.Fragment>
+                {this.props.isLoading ? 
+                    <Loader /> : 
+                    <div className={styles.Recipe}>
+                        {this.props.recipe.recipeList.length ? this.renderRecipeList() : null}
+                        {this.props.recipe.recipeList.length ? this.renderRefreshBtn() : null}
+                        {!this.props.recipe.recipeList.length ?
+                            <h1 className={styles.NoRecipe}>No Recipe Found.</h1> : 
+                            null
+                        }
+                    </div>
+                }
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return { recipe: state.recipe };
+    return { 
+        recipe: state.recipe,
+        isLoading: state.loading && state.loading.loading
+    };
 };
 
 const mapDispatchToProps = {

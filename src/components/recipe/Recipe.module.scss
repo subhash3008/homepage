@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: space-evenly;
     flex-flow: row wrap;
+    min-height: calc(100vh - 95px);
 
     &__Item {
         max-width: 325px;
@@ -96,4 +97,9 @@
             }
         }
     }
+}
+
+.NoRecipe {
+    color: #fff;
+    font-size: xx-large;
 }

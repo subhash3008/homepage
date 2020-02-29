@@ -1,0 +1,42 @@
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(mediumseagreen, .3);
+}
+
+.Loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 10px solid #fff;
+    border-top: 10px solid mediumseagreen;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    animation: rotate .75s ease-in-out infinite;
+
+    @media (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+        border: 8px solid #fff;
+        border-top: 8px solid mediumseagreen;
+    }
+
+    // &::before {
+    //     content: '';
+    //     width: 100%;
+    //     height: 100%;
+    //     background: transparent;
+    // }
+}
+
+@keyframes rotate {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

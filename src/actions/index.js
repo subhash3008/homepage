@@ -18,13 +18,16 @@ export const getRandomRecipeList = (params) => async (dispatch) => {
     // console.log('random recipe api params : ', params);
     const url = URLS.randomRecipeSpoonacular + createParamsString(params);
     let response = null;
+    dispatch({type: actionType.SET_LOADER});
     try {
         response = await _api.get(url);
+        dispatch({type: actionType.CLEAR_LOADER});
+        console.log('RESPONSE FOR RANDOM RECIPE : ', response.data);
+        dispatch({type: actionType.GET_RANDOM_RECIPE, payload: response.data && response.data.recipes});
     } catch (e) {
         console.error(e);
+        dispatch({type: actionType.CLEAR_LOADER});
     }
-    console.log('RESPONSE FOR RANDOM RECIPE : ', response.data);
-    dispatch({type: actionType.GET_RANDOM_RECIPE, payload: response.data && response.data.recipes});
 }
 
 export const getRecipeInfoById = (id) => async (dispatch) => {
@@ -34,11 +37,14 @@ export const getRecipeInfoById = (id) => async (dispatch) => {
     };
     const url = (URLS.infoRecipeSpoonacular).replace('/:id/', `/${id}/`) + createParamsString(params);
     let response = null;
+    dispatch({type: actionType.CLEAR_LOADER});
     try {
         response = await _api.get(url);
+        dispatch({type: actionType.CLEAR_LOADER});
+        console.log('RESPONSE FOR ID RECIPE : ', id, response.data);
+        dispatch({type: actionType.GET_RECIPE_BY_ID, payload: response.data && response.data});
     } catch (e) {
         console.error(e);
+        dispatch({type: actionType.CLEAR_LOADER});
     }
-    console.log('RESPONSE FOR ID RECIPE : ', id, response.data);
-    dispatch({type: actionType.GET_RECIPE_BY_ID, payload: response.data && response.data});
 }

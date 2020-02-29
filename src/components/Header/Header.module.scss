@@ -23,19 +23,19 @@
 
     &__Menu {
         &__Btn {
-            height: 30px;
-            width: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            // height: 30px;
+            // width: 30px;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
 
             &:hover {
                 cursor: pointer;
             }
 
-            img {
-                width: 100%;
-            }
+            // img {
+            //     width: 100%;
+            // }
         }
     }
 }
@@ -189,6 +189,22 @@
 
     }
 
+}
+
+.BorderIcon {
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+
+    &__Bar {
+        width: 25px;
+        height: 2px;
+        &:not(:first-child) {
+            margin-top: 6px;
+        }
+        border-radius: 5px;
+    }
 }
 
 @keyframes fadein {

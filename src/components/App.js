@@ -28,7 +28,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // console.log('app history : ', history);
         if (history.location.pathname === '/') {
             this.setState({isHomepage: true});
         }
@@ -60,7 +59,6 @@ class App extends React.Component {
     }
 
     render() {
-        // console.log('props app : ', this.props, this.state);
         return (
             <div style={this.getAppStyle()}>
                 <AppRoutes hourOfDay={this.hourOfDay} setWeather={this.setWeather} weatherData={this.state.weatherData} isHomepage={this.state.isHomepage}/>
