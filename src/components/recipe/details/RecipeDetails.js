@@ -43,13 +43,111 @@ class RecipeDetails extends React.Component {
         }
     }
 
+    renderIngredients = () => {
+        return this.state.recipe.extendedIngredients.map(el => {
+            return (
+                <li className={styles.RecipeDetails__Ingredients__Item} key={el.original}>
+                    <p>{el.original.substring(0, 1).toUpperCase() + el.original.substring(1)}</p>
+                </li>
+            );
+        });
+    }
+
+    renderIndividualInstructions = (steps) => {
+        if (steps.length) {
+            return steps.map(el => {
+                return (
+                    <li key={el.step}>
+                        <p>{el.step}</p>
+                    </li>
+                );
+            });
+        }
+    }
+
+    renderInstructions = () => {
+        return this.state.recipe.analyzedInstructions.map((el, index) => {
+            return (
+                <li className={styles.RecipeDetails__Instructions__Item} key={el.name + index}>
+                    <h3>{el.name || '-'}</h3>
+                    <ol>
+                        {this.renderIndividualInstructions(el.steps)}
+                    </ol>
+                </li>
+            );
+        });
+    }
+
     render() {
         console.log('details render props : ', this.props);
         console.info('details render state : ', this.state);
+        if (this.state.recipe) {
+            return (
+                <div className={styles.RecipeDetails}>
+                    <div className={styles.RecipeDetails__Title}>
+                        <h2>{this.state.recipe.title || ''}</h2>
+                    </div>
+                    <div className={styles.RecipeDetails__Img}>
+                        <img src={this.state.recipe.image || ''} alt={this.state.recipe.title}></img>
+                    </div>
+                    <div className={styles.RecipeDetails__Info}>
+                        <div className={styles.RecipeDetails__Info__Item}>
+                            <div className={styles.RecipeDetails__Info__Item__Icon}>
+                                <img src="/images/good.png"></img>
+                            </div>
+                            <div className={styles.RecipeDetails__Info__Item__Value}>
+                                {this.state.recipe.aggregateLikes || 0} Likes
+                            </div>
+                        </div>
+                        <div className={styles.RecipeDetails__Info__Item}>
+                            <div className={styles.RecipeDetails__Info__Item__Icon}>
+                                <img src="/images/scoreboard.png"></img>
+                            </div>
+                            <div className={styles.RecipeDetails__Info__Item__Value}>
+                                {this.state.recipe.spoonacularScore || 0} %
+                            </div>
+                        </div>
+                        <div className={styles.RecipeDetails__Info__Item}>
+                            <div className={styles.RecipeDetails__Info__Item__Icon}>
+                                <img src="/images/health.png"></img>
+                            </div>
+                            <div className={styles.RecipeDetails__Info__Item__Value}>
+                                {this.state.recipe.healthScore || 0} %
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.RecipeDetails__Summary}>
+                        <span dangerouslySetInnerHTML={{__html: this.state.recipe.summary || ''}}></span>
+                    </div>
+                    <div className={styles.RecipeDetails__Ingredients}>
+                        <h3 className={styles.RecipeDetails__Ingredients__Title}>
+                            Ingredients
+                        </h3>
+                        <ul>
+                            {this.renderIngredients()}
+                        </ul>
+                    </div>
+                    <div className={styles.RecipeDetails__Instructions}>
+                        <h3 className={styles.RecipeDetails__Instructions__Title}>
+                            Instructions
+                        </h3>
+                        <ul>
+                            {this.renderInstructions()}
+                        </ul>
+                    </div>
+                    <div className={styles.RecipeDetails__AddInfo}>
+                        <p>
+                            Recipe By : {this.state.recipe.sourceName}
+                        </p>
+                    </div>
+                    {/* Recipe Details
+                    {this.state.recipe && this.state.recipe.id || null} */}
+                </div>
+            );
+        }
         return (
-            <div className={styles.RecipeDetails}>
-                Recipe Details
-                {this.state.recipe && this.state.recipe.id || null}
+            <div className={styles.NoRecipe}>
+                No recipe found with this id.
             </div>
         );
     }
