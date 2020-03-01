@@ -92,7 +92,7 @@ class RecipeDetails extends React.Component {
                     <div className={styles.RecipeDetails__Info}>
                         <div className={styles.RecipeDetails__Info__Item}>
                             <div className={styles.RecipeDetails__Info__Item__Icon}>
-                                <img src="/images/good.png"></img>
+                                <img src="/images/good.png" alt="likes"></img>
                             </div>
                             <div className={styles.RecipeDetails__Info__Item__Value}>
                                 {this.state.recipe.aggregateLikes || 0} Likes
@@ -100,7 +100,7 @@ class RecipeDetails extends React.Component {
                         </div>
                         <div className={styles.RecipeDetails__Info__Item}>
                             <div className={styles.RecipeDetails__Info__Item__Icon}>
-                                <img src="/images/scoreboard.png"></img>
+                                <img src="/images/scoreboard.png" alt="spoonacular score"></img>
                             </div>
                             <div className={styles.RecipeDetails__Info__Item__Value}>
                                 {this.state.recipe.spoonacularScore || 0} %
@@ -108,7 +108,7 @@ class RecipeDetails extends React.Component {
                         </div>
                         <div className={styles.RecipeDetails__Info__Item}>
                             <div className={styles.RecipeDetails__Info__Item__Icon}>
-                                <img src="/images/health.png"></img>
+                                <img src="/images/health.png" alt="health score"></img>
                             </div>
                             <div className={styles.RecipeDetails__Info__Item__Value}>
                                 {this.state.recipe.healthScore || 0} %

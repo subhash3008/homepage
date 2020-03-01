@@ -21,7 +21,7 @@ const Countries = () => {
                     <td>{el.Name}</td>
                     <td>{capital}</td>
                     <td>
-                        <a href={el.CountryInfo} target="_blank">Know More</a>
+                        <a href={el.CountryInfo} target="_blank" rel="noopener noreferrer">Know More</a>
                     </td>
                 </tr>
             )

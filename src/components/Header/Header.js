@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Header.module.scss';
 import { getTimedColor } from '../../utils';
-import { _api } from '../../api';
+// import { _api } from '../../api';
 // import urls from '../../api/urls';
 // import tokens from '../../api/tokens.json';
 import { Link } from 'react-router-dom';
