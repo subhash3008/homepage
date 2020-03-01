@@ -26,7 +26,6 @@ const formatDate = (d) => {
 const Homepage = (props) => {
     const dateColor = getTimedColor(props.hourOfDay);
     const dateStr = formatDate(new Date());
-    console.log('data : ', props.weatherData);
     if (props.isLoading) {
         return <Loader />
     }

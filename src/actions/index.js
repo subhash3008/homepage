@@ -55,7 +55,7 @@ export const setHomepage = (isHomepage) => (dispatch) => {
 
 export const getWeatherData = (params = {}) => async (dispatch) => {
     params['appid'] = TOKENS.currWeather;
-    params['id'] = 1270642;
+    params['id'] = TOKENS.currWeatherAppId;
     const url = URLS.currWeather + createParamsString(params);
     let response = null;
     try {

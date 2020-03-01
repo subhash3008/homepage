@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import styles from './RecipeDetails.module.scss';
 import { getRandomRecipeList, getRecipeInfoById } from '../../../actions';
+import Loader from '../../loader/Loader';
 
 class RecipeDetails extends React.Component {
     constructor(props) {
@@ -76,6 +77,9 @@ class RecipeDetails extends React.Component {
     }
 
     render() {
+        if (this.props.isLoading) {
+            return <Loader />;
+        }
         if (this.state.recipe) {
             return (
                 <div className={styles.RecipeDetails}>
@@ -150,7 +154,8 @@ class RecipeDetails extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        recipeList: state.recipe && state.recipe.recipeList
+        recipeList: state.recipe && state.recipe.recipeList,
+        isLoading: state.loading && state.loading.loading
     };
 }
 
