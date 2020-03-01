@@ -3,8 +3,8 @@ import React from 'react';
 import styles from './Header.module.scss';
 import { getTimedColor } from '../../utils';
 import { _api } from '../../api';
-import urls from '../../api/urls';
-import tokens from '../../api/tokens.json';
+// import urls from '../../api/urls';
+// import tokens from '../../api/tokens.json';
 import { Link } from 'react-router-dom';
 // import history from '../../history';
 
@@ -21,31 +21,31 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.isHomepage) {
-            this.getWeatherData();
-        }
+        // if (this.props.isHomepage) {
+        //     this.getWeatherData();
+        // }
     }
 
-    getWeatherData = async () => {
-        const url = urls.currWeather + '&appid=' + tokens.currWeather;
-        const response = await _api.get(url);
-        console.log('response weather ::::', response);
-        if (response.status === 200) {
-            const { temp } = response.data && response.data.main;
-            const { description } = response.data && response.data.weather[0];
-            if (temp || description) {
-                const tempC = (temp - 273.15).toFixed(2);
-                const weatherData = (tempC ? tempC + '°C, ' : '') + (description ? description : '');
-                if (weatherData) {
-                    if (window.innerWidth > 768) {
-                        this.setState(prevState => ({ ...prevState, weatherData }));
-                    } else {
-                        this.props.setWeather(weatherData);
-                    }
-                }
-            }
-        }
-    }
+    // getWeatherData = async () => {
+    //     const url = urls.currWeather + '&appid=' + tokens.currWeather;
+    //     const response = await _api.get(url);
+    //     console.log('response weather ::::', response);
+    //     if (response.status === 200) {
+    //         const { temp } = response.data && response.data.main;
+    //         const { description } = response.data && response.data.weather[0];
+    //         if (temp || description) {
+    //             const tempC = (temp - 273.15).toFixed(2);
+    //             const weatherData = (tempC ? tempC + '°C, ' : '') + (description ? description : '');
+    //             if (weatherData) {
+    //                 if (window.innerWidth > 768) {
+    //                     this.setState(prevState => ({ ...prevState, weatherData }));
+    //                 } else {
+    //                     this.props.setWeather(weatherData);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     onMenuBtnClick = () => {
         this.setState({isMenuOpen: !this.state.isMenuOpen}, () => {
@@ -83,7 +83,7 @@ class Header extends React.Component {
             case 'morning': 
             case 'noon':
             case 'evening':
-                return '#555';
+                return '#333';
             case 'night':
             case 'dark_night':
                 return '#efefef';
