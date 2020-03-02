@@ -1,0 +1,27 @@
+.Sip {
+    min-height: calc(100vh - 64px);
+
+    &__Table {
+        padding: 20px;
+        table {
+            border: 1px solid #efefef;
+            color: #efefef;
+            border-collapse: collapse;
+            text-align: center;
+            thead {
+                background: #efefef;
+                color: mediumseagreen;
+                th {
+                    border: 1px solid rgba(mediumseagreen, .5);
+                    padding: 10px 15px;
+                }
+            }
+            tbody {
+                td {
+                    border: 1px solid #efefef;
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}

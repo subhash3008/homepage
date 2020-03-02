@@ -4,3 +4,10 @@ export const getTimedColor = (hourOfDay) => {
     }
     return '#cfcfcf';
 }
+
+export const toNumberStr = (num) => {
+    if (num && !isNaN(num)) {
+        return (+num.toFixed()).toLocaleString('en-IN');
+    }
+    return num;
+}

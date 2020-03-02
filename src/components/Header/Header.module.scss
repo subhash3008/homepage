@@ -80,6 +80,10 @@
     color: #fff;
     z-index: 10;
     animation: menuFadeIn .5s ease-in-out;
+
+    @media (max-width: 768px) {
+        width: 90%;
+    } 
     &__Heading {
         font-size: xx-large;
         font-weight: normal;

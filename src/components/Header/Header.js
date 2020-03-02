@@ -115,8 +115,8 @@ class Header extends React.Component {
                             <li className={styles.Menu__Content__List__Item} onClick={this.onOverlayClose}>
                                 <Link to="/countries">Countries</Link>
                             </li>
-                            <li className={styles.Menu__Content__List__Item}>
-                                <span>Jokes</span>
+                            <li className={styles.Menu__Content__List__Item} onClick={this.onOverlayClose}>
+                                <Link to="/sip">Sip Calculator</Link>
                             </li>
                             <li className={styles.Menu__Content__List__Item}>
                                 <span>Jokes</span>

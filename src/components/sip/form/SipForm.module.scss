@@ -1,0 +1,52 @@
+.Form {
+    padding: 20px;
+
+    &__Field {
+        width: 100%;
+        &__Control {
+            width: 100%;
+            text-align: center;
+            &__Input {
+                width: 90%;
+                margin: 10px auto;
+                font-size: 16px;
+                padding: 10px 15px;
+                border-radius: 5px;
+                border: 1px solid #efefef;
+                background: transparent;
+                color: #fff;
+
+                &:focus {
+                    outline: none;
+                }
+
+                &::placeholder {
+                    color: #efefef;
+                }
+            }
+
+            &__InputError {
+                font-size: 12px;
+                color: lighten(crimson, 5%);
+                text-align: left;
+                padding: 0 15px;
+            }
+
+            &__Submit {
+                border: 1px solid #efefef;
+                background-color: transparent;
+                padding: 10px 20px;
+                margin-top: 10px;
+                color: #efefef;
+                font-size: 16px;
+                border-radius: 5px;
+
+                &:disabled {
+                    background: lighten(mediumseagreen, 20%);
+                    border: #cfcfcf;
+                    color: #cfcfcf;
+                }
+            }
+        }
+    }
+}

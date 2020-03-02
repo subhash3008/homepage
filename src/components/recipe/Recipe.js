@@ -14,7 +14,12 @@ class Recipe extends React.Component {
     componentDidMount() {
         // console.log("REcipe component :", this.state, this.props);
         // console.log(this.props.recipe && this.props.recipe.recipeList && this.props.recipe.recipeList.length);
-        if (!(this.props.recipe && this.props.recipe.recipeList && this.props.recipe.recipeList.length)) {
+        if (!(
+            this.props.recipe && 
+            this.props.recipe.recipeList && 
+            this.props.recipe.recipeList.length &&
+            this.props.recipe.recipeList.length < 5
+        )) {
             this.props.getRandomRecipeList({...this.queryParams});
         }
     }
