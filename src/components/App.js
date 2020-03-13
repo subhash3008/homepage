@@ -77,7 +77,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        weather: state.weather
+        weather: state.weather,
+        location: state.location
     };
 }
 

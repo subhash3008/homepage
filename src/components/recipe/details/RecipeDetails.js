@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import styles from './RecipeDetails.module.scss';
-import { getRandomRecipeList, getRecipeInfoById } from '../../../actions';
+import { 
+    getRandomRecipeList, 
+    getRecipeInfoById, 
+    saveToFavourites 
+} from '../../../actions';
 import Loader from '../../loader/Loader';
 
 class RecipeDetails extends React.Component {
@@ -17,6 +21,14 @@ class RecipeDetails extends React.Component {
 
     componentDidUpdate() {
         this.performIdCheck('update');
+    }
+
+    saveRecipeToFavourites = () => {
+        if (this.state.recipe) {
+            this.props.saveToFavourites(this.state.recipe);
+        } else {
+            console.error('No recipe to save.', this.state);
+        }
     }
 
     performIdCheck = (flag = '') => {
@@ -141,6 +153,9 @@ class RecipeDetails extends React.Component {
                     </div>
                     {/* Recipe Details
                     {this.state.recipe && this.state.recipe.id || null} */}
+                    <div className={styles.RecipeDetails__Fav} onClick={this.saveRecipeToFavourites}>
+                        <img src="/images/bookmark.svg" className={styles.RecipeDetails__Fav__Img}></img>
+                    </div>
                 </div>
             );
         }
@@ -161,7 +176,8 @@ const mapStateToProps = (state) => {
 
 const mapStateToDispatch = {
     getRandomRecipeList,
-    getRecipeInfoById
+    getRecipeInfoById,
+    saveToFavourites
 }
 
 export default connect(

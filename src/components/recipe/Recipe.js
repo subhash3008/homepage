@@ -20,8 +20,12 @@ class Recipe extends React.Component {
             this.props.recipe.recipeList.length &&
             this.props.recipe.recipeList.length < 5
         )) {
-            this.props.getRandomRecipeList({...this.queryParams});
+            this.getRandomRecipes();
         }
+    }
+
+    getRandomRecipes = () => {
+        this.props.getRandomRecipeList({...this.queryParams});
     }
 
     goToDetailPage = (recipe) => {
@@ -33,9 +37,9 @@ class Recipe extends React.Component {
 
     renderRecipeList = () => {
         if (this.props.recipe && this.props.recipe.recipeList && this.props.recipe.recipeList.length) {
-            return this.props.recipe.recipeList.map(el => {
+            return this.props.recipe.recipeList.map((el, index) => {
                 return (
-                    <div className={styles.Recipe__Item} key={el.id + el.title}>
+                    <div className={styles.Recipe__Item} key={el.id + el.title + index}>
                         <div className={styles.Recipe__Item__Img}>
                             <img src={el.image} alt={el.title}></img>
                         </div>
@@ -92,7 +96,7 @@ class Recipe extends React.Component {
     renderRefreshBtn() {
         return (
             <div className={styles.Recipe__Footer}>
-                <button className={styles.Recipe__Footer__Btn}>Get More Recipes</button>
+                <button className={styles.Recipe__Footer__Btn} onClick={this.getRandomRecipes}>Get More Recipes</button>
             </div>
         );
     }

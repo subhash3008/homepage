@@ -125,7 +125,7 @@ class Header extends React.Component {
                     </div>
                 </div>
             </React.Fragment>
-        )
+        );
     }
 
     render() {

@@ -7,8 +7,9 @@ import { toNumberStr } from '../../utils';
 class Sip extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {sipData: []};
+        this.state = {sipData: [], activeForm: ''};
     }
+
     setSipData = (arr) => {
         if (arr && arr.length) {
             console.log('SIP Data : ', arr);
@@ -46,13 +47,33 @@ class Sip extends React.Component {
                     </table>
                 </div>
             </React.Fragment>
-        )
+        );
     }
 
     render() {
         return (
             <div className={styles.Sip}>
-                <SipForm setSipData={this.setSipData}/>
+                {/* <div className={styles.Sip__Tabs}>
+                    <div
+                        className={`${styles.Sip__Tabs__Item} ${this.state.activeForm === 'sip' ? styles.Sip__Tabs__Item__Active : ''}`} 
+                        onClick={() => this.setState({activeForm: 'sip'})}
+                    >
+                        <span>SIP</span>
+                    </div>
+                    <div 
+                        className={`${styles.Sip__Tabs__Item} ${this.state.activeForm === 'mf' ? styles.Sip__Tabs__Item__Active : ''}`} 
+                        onClick={() => this.setState({activeForm: 'mf'})}
+                    >
+                        <span>MF Returns</span>
+                    </div>
+                    <div
+                        className={`${styles.Sip__Tabs__Item} ${this.state.activeForm === 'goalSip' ? styles.Sip__Tabs__Item__Active : ''}`} 
+                        onClick={() => this.setState({activeForm: 'goalSip'})}
+                    >
+                        <span>Goal SIP</span>
+                    </div>
+                </div> */}
+                <SipForm setSipData={this.setSipData} activeForm={this.state.activeForm}/>
                 {this.state.sipData && this.state.sipData.length ?
                     this.renderSipData() :
                     null

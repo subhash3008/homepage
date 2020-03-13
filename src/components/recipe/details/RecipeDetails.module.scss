@@ -24,16 +24,17 @@
     &__Info {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         flex-flow: row wrap;
         margin: 10px auto;
         // border: 1px solid #efefef;
         padding: 20px 30px;
 
-        width: 95%;
+        width: 80%;
 
         @media (min-width:768px) {
             width: 50%;
+            justify-content: space-between;
         }
 
         &__Item {
@@ -146,5 +147,20 @@
 
     &__AddInfo {
         color: #fff;
+    }
+
+    &__Fav {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        background: #fff;
+        padding: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+
+        &__Img {
+            width: 100%;
+        }
     }
 }
